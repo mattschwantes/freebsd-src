@@ -59,7 +59,7 @@
 
 #include <machine/bus.h>
 #include <sys/rman.h>
-
+#define DEV_ACPI 1 // hack to activate ig4 ACPI functions
 #ifdef DEV_ACPI
 #include <contrib/dev/acpica/include/acpi.h>
 #include <contrib/dev/acpica/include/accommon.h>
@@ -896,6 +896,14 @@ ig4iic_get_config(ig4iic_softc_t *sc)
 		ig4iic_acpi_params(handle, "FMCN", &sc->cfg.fs_scl_hcnt,
 		    &sc->cfg.fs_scl_lcnt, &sc->cfg.fs_sda_hold);
 	}
+
+	ACPI_BUFFER buf;
+	buf.Pointer = NULL;
+	buf.Length = ACPI_ALLOCATE_BUFFER;
+	ACPI_STATUS status;
+	status = AcpiEvaluateObject(handle, "_PS0", NULL, &buf);
+	printf("Broadwell-U UEFI ig4 hack %x", status);
+		
 #endif
 
 	if (bootverbose) {
