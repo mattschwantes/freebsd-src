@@ -1,5 +1,7 @@
 <Code changes in ig4 ichiic: ig4_iic.c to enable elan0000 TouchPad on ig4 controller int3432 for a Broadwell-U UEFI Chromebook (Toshiba Chromebook 2 2015 i3) running MrChromebox firmware.
 
+Background: After allocating sys_res_memory with RF_ACTIVE, Broadwell-U MrChromebox UEFI doesn't succeed in changing the memory contents unless ACPI first sends a PowerOn to the device. Without these changes, I2C Designware ig4 controller fails to load with error attach-1.
+
 Confirmed working on FreeBSD 14.1 and XFCE.
 
 You will need to rename ig4.ko in /boot/kernel , then 'cd /usr/src/sys/dev/ichiic' , run 'make' , and then 'run make install'
