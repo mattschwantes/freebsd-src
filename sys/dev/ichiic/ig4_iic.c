@@ -1082,6 +1082,7 @@ ig4iic_attach(ig4iic_softc_t *sc)
 		device_printf(sc->dev,
 			      "failed to attach child: error %d\n", error);
 	}
+	reg_write(sc, 0x800, 1); // additional hack to get ietp autoloader after ig4 fix
 
 done:
 	return (error);
