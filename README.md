@@ -1,3 +1,12 @@
+<Code changes in ig4 ichiic: ig4_iic.c to enable elan0000 TouchPad on ig4 controller int3432 for a Broadwell-U UEFI Chromebook (Toshiba Chromebook 2 2015 i3) running MrChromebox firmware.
+
+Confirmed working on FreeBSD 14.1 and XFCE.
+
+You will need to rename ig4.ko in /boot/kernel , then 'cd /usr/src/sys/dev/ichiic' , run 'make' , and then 'run make install'
+
+FreeBSD runs really well on this device.  You can just use a USB mouse, but the touchpad is already there and now can work.>
+
+
 FreeBSD Source:
 ---------------
 This is the top level of the FreeBSD source directory.
